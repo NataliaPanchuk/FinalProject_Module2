@@ -1,5 +1,7 @@
 package Interfaces;
 
-public interface ToReproduction {
+import Animals.Animals;
 
+public interface ToReproduction {
+    Animals reproduction();
 }

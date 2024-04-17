@@ -1,5 +1,7 @@
 package Animals;
 
+import Animals.factory.AnimalFactory;
+import Animals.factory.Generation;
 import Interfaces.ToDead;
 import Interfaces.ToEat;
 import Interfaces.ToMove;
@@ -7,12 +9,12 @@ import Interfaces.ToReproduction;
 
 import java.util.List;
 
-public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction {
+public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, Generation {
     private AnimalSpecies animalSpecies;
     private char iconAnimal;
     private double weight, satiety, fullSatiety;
     private int speed, health, move;
-    //private AnimalFactory factory = new AnimalFactory();
+    private AnimalFactory factory = new AnimalFactory();
     private List<AnimalSpecies> listHunting;
     private List<Integer> listHuntingPresent;
     private List<AnimalSpecies> hunting;
@@ -125,8 +127,13 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction {
     }
 
     @Override
+    public Animals reproduction() {
+        return factory.createAnimal(getAnimalSpecies());
+    }
+
+    @Override
     public int toMove() {
-        return 0;
+        return toGenerate(speed);
     }
 
     @Override
