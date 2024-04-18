@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, Generation {
     private AnimalSpecies animalSpecies;
-    private char iconAnimal;
+    private String iconAnimal;
     private double weight, satiety, fullSatiety;
     private int speed, health, move;
     private AnimalFactory factory = new AnimalFactory();
@@ -20,8 +20,9 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
     private List<AnimalSpecies> hunting;
     private int maxAnimal;
 
-    public Animals(char iconAnimal, AnimalSpecies animalSpecies, double weight, double satiety, int health) {
+    public Animals(String iconAnimal, double weight, double satiety, int speed, int health, AnimalSpecies animalSpecies) {
         this.iconAnimal = iconAnimal;
+        this.speed = speed;
         this.animalSpecies = animalSpecies;
         this.weight = weight;
         this.satiety = satiety;
@@ -104,11 +105,11 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
         this.weight = weight;
     }
 
-    public char getIconAnimal() {
+    public String getIconAnimal() {
         return iconAnimal;
     }
 
-    public void setIconAnimal(char iconAnimal) {
+    public void setIconAnimal(String iconAnimal) {
         this.iconAnimal = iconAnimal;
     }
 
