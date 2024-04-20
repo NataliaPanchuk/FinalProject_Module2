@@ -2,10 +2,10 @@ package Animals;
 
 import Animals.factory.AnimalFactory;
 import Animals.factory.Generation;
-import Interfaces.ToDead;
-import Interfaces.ToEat;
-import Interfaces.ToMove;
-import Interfaces.ToReproduction;
+import interfaces.ToDead;
+import interfaces.ToEat;
+import interfaces.ToMove;
+import interfaces.ToReproduction;
 
 import java.util.List;
 
@@ -133,12 +133,12 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
     }
 
     @Override
-    public int toMove() {
+    public int move() {
         return toGenerate(speed);
     }
 
     @Override
-    public void toEat(double food) {
+    public void eat(double food) {
         if(food >= satiety){
             fullSatiety = satiety;
         } else if (food < satiety){

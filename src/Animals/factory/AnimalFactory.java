@@ -2,9 +2,9 @@ package Animals.factory;
 
 import Animals.AnimalSpecies;
 import Animals.Animals;
-import Animals.Herbivores.*;
-import Animals.Plants.Plants;
-import Animals.Predators.*;
+import Animals.herbivores.*;
+import Animals.plants.Plants;
+import Animals.predators.*;
 
 public class AnimalFactory {
     public Animals createAnimal(AnimalSpecies type){
