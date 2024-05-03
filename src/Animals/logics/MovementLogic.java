@@ -12,9 +12,7 @@ public class MovementLogic {
         y = corY;
         int steep = object.move();
 
-        if (steep == 0) {
-            steep = 1;
-        }
+
 
         if (direction == 0) {
 

@@ -7,6 +7,7 @@ import Animals.island.IslandCell;
 
 public class HuntingLogic {
     IslandCell earthCell;
+    private double huntingFactor = 0.2;
 
     public int startHunting(Animals object, IslandCell cell) {
         earthCell = cell;
@@ -30,7 +31,7 @@ public class HuntingLogic {
                 object.eat(animal.getWeight());
                 animal.setHealth(0);
             } else {
-                object.setFullSatiety(object.getFullSatiety() - (object.getSatiety() * 0.2));
+                object.setFullSatiety(object.getFullSatiety() - (object.getSatiety() * huntingFactor));
             }
             return 0;
         } else {

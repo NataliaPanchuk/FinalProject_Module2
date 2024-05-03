@@ -26,7 +26,7 @@ public class Basic {
         if (object.isDead() && object.getMove() > 0) {
             object.setMove(0);
             if (object.getAnimalSpecies() != AnimalSpecies.PLANTS) {
-                if (object.getFullSatiety() >= (object.getSatiety() * 0.81)) {
+                if (object.getFullSatiety() >= (object.getSatiety() * object.getPercentageSatiety())) {
 
                     if (breedingLogic.startReproduction(object, cell) == 0) {
                         return;
@@ -57,7 +57,6 @@ public class Basic {
         }
     }
 
-    //}
     public void openIsland() {
         earthCell = island.getArrayCell();
         readCell();

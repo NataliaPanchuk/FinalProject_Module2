@@ -2,14 +2,10 @@ package Animals;
 
 import Animals.factory.AnimalFactory;
 import Animals.factory.Generation;
-import interfaces.ToDead;
-import interfaces.ToEat;
-import interfaces.ToMove;
-import interfaces.ToReproduction;
 
 import java.util.List;
 
-public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, Generation {
+public abstract class Animals implements Generation {
     private AnimalSpecies animalSpecies;
     private String iconAnimal;
     private double weight, satiety, fullSatiety;
@@ -19,6 +15,7 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
     private List<Integer> listHuntingPresent;
     private List<AnimalSpecies> hunting;
     private int maxAnimal;
+    private double percentageSatiety = 0.80;
 
     public Animals(String iconAnimal, double weight, double satiety, int speed, int health, AnimalSpecies animalSpecies) {
         this.iconAnimal = iconAnimal;
@@ -27,9 +24,10 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
         this.weight = weight;
         this.satiety = satiety;
         this.health = health;
-        fullSatiety = satiety * 0.80;
+        fullSatiety = satiety * percentageSatiety;
         move = 1;
     }
+
     public void setHunting(List<AnimalSpecies> hunting) {
         this.hunting = hunting;
     }
@@ -53,6 +51,7 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
     public void setMaxAnimal(int maxAnimal) {
         this.maxAnimal = maxAnimal;
     }
+
     public List<AnimalSpecies> getListHunting() {
         return listHunting;
     }
@@ -121,31 +120,33 @@ public abstract class Animals implements ToDead, ToEat, ToMove, ToReproduction, 
         this.speed = speed;
     }
 
-
-    @Override
-    public boolean isDead() {
-        return(health > 0);
+    public double getPercentageSatiety() {
+        return percentageSatiety;
     }
 
-    @Override
+    public boolean isDead() {
+        return (health > 0);
+    }
+
+
     public Animals reproduction() {
         return factory.createAnimal(getAnimalSpecies());
     }
 
-    @Override
+
     public int move() {
         return toGenerate(speed);
     }
 
-    @Override
+
     public void eat(double food) {
-        if(food >= satiety){
+        if (food >= satiety) {
             fullSatiety = satiety;
-        } else if (food < satiety){
-            if((fullSatiety + food) >= satiety){
+        } else if (food < satiety) {
+            if ((fullSatiety + food) >= satiety) {
                 fullSatiety = satiety;
-            } else{
-                fullSatiety+=food;
+            } else {
+                fullSatiety += food;
             }
         }
     }
